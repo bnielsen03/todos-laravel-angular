@@ -6,11 +6,11 @@
 3. Create lamp stack on vm - [instructions](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-22-04)
 4. Create laravel project - [instructions](https://laravel.com/docs/9.x/installation)
 5. Install [composer](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-20-04)
-5. Connect laravel to mysql db and run migrations
-6. Install tailwind css - [Instructions](https://tailwindcss.com/docs/guides/laravel)
-7. Enable authentication with [Laravel Breeze](https://laravel.com/docs/9.x/starter-kits#laravel-breeze)
-8. Use components to build out front-end in Blade - [Instructions](https://laravel.com/docs/9.x/blade#components)
-9. Ability to upload images (first locally, then to S3)
-10. Host project in AWS with an EC2 instance and Route53
-11. Refactor front end to Angular
-12. Host angular in S3 with the CDN
+6. Connect laravel to mysql db and run migrations
+7. Install tailwind css - [Instructions](https://tailwindcss.com/docs/guides/laravel)
+8. Enable authentication with [Laravel Breeze](https://laravel.com/docs/9.x/starter-kits#laravel-breeze)
+9. Use components to build out front-end in Blade - [Instructions](https://laravel.com/docs/9.x/blade#components)
+10. Ability to upload images (first locally, then to S3)
+11. Host project in AWS with an EC2 instance and Route53
+12. Refactor front end to Angular
+13. Host angular in S3 with the CDN
