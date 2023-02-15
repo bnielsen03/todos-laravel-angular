@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/dashboard';
+    public const HOME = '/todo-lists';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -45,6 +45,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+
+        $this->mapTodoListRoutes();
 
         //
     }
@@ -76,5 +78,11 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
+    }
+
+    protected function mapTodoListRoutes()
+    {
+        Route::middleware(['web', 'auth'])
+            ->group(base_path('app/TodoLists/Http/routes.php'));
     }
 }
