@@ -11,7 +11,8 @@ class TodoListController extends Controller
     public function index(Request $request)
     {
         $todoLists = TodoList::query()->where('user_id', $request->user()->id)->get();
-        return view('todoLists.dashboard');
+
+        return view('todoLists.dashboard', compact('todoLists'));
     }
 
     public function form(Request $request)
@@ -27,5 +28,10 @@ class TodoListController extends Controller
         ]);
 
         return redirect(route('todo-lists'));
+    }
+
+    public function delete(Request $request, $todoListID)
+    {
+        return response()->json(['success' => TodoList::find($todoListID)->delete()]);
     }
 }

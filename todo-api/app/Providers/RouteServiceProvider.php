@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\TodoList;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapTodoListRoutes();
 
+        $this->mapTodoRoutes();
+
         //
     }
 
@@ -84,5 +87,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware(['web', 'auth'])
             ->group(base_path('app/TodoLists/Http/routes.php'));
+    }
+
+    protected function mapTodoRoutes()
+    {
+        Route::middleware(['web', 'auth'])
+            ->group(base_path('app/Todos/Http/routes.php'));
     }
 }
