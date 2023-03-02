@@ -7,12 +7,17 @@
 
     <div>
         <x-card>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 <div>
                     <x-label for="title" :value="__('Title')" />
 
                     <x-input id="title" class="block mt-1 w-full" type="title" name="title" :value="old('title')" required />
+                </div>
+
+                <div class="py-4">
+                    <label for="image">Image</label>
+                    <input type="file" name="image" id="image">
                 </div>
 
                 <div class="mt-4 text-center">

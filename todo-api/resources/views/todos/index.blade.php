@@ -14,8 +14,19 @@
                     @if($todoList->todos->count())
                         @foreach($todoList->todos as $todo)
                             <div class="py-4 list">
-                                <span><i class="fa-regular fa-circle-check"></i> {{$todo->title}}</span>
-                                <span class="float-right delete"><i class="fa-solid fa-trash"></i></span>
+                                <span class="complete" data-id="{{$todo->id}}">
+                                    <i class="fa-regular {{$todo->completed_at ? 'text-green-600 fa-circle-check' : 'fa-circle'}}"></i>
+                                    {{$todo->title}}
+                                </span>
+
+                                @if($todo->image)
+                                    <i class="fa-regular fa-image show" data-id="{{$todo->id}}"></i>
+                                    <div class="text-center w-full" id="image_{{$todo->id}}" style="display: none">
+                                        <img style="display: inline-block" src="{{Storage::disk('s3')->temporaryUrl($todo->image->path, now()->addMinutes(30))}}">
+                                    </div>
+                                @endif
+
+                                <span class="float-right delete" data-id="{{$todo->id}}"><i class="fa-solid fa-trash"></i></span>
                             </div>
                             <hr>
                         @endforeach
@@ -30,6 +41,28 @@
     </div>
 
     <script>
+        $('.delete').on('click', function() {
+            $.ajax({
+                url: `/todo-lists/{{$todoList->id}}/todos/${$(this).data('id')}`,
+                type: 'DELETE',
+                success: function(response) {
+                    window.location.reload();
+                }
+            });
+        })
 
+        $('.complete').on('click', function() {
+            $.ajax({
+                url: `/todo-lists/{{$todoList->id}}/todos/${$(this).data('id')}/toggle`,
+                type: 'POST',
+                success: function(response) {
+                    window.location.reload();
+                }
+            });
+        })
+
+        $('.show').on('click', function() {
+            $(`#image_${$(this).data('id')}`).toggle();
+        })
     </script>
 </x-app-layout>

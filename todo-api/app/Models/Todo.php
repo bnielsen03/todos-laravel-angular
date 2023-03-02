@@ -16,4 +16,9 @@ class Todo extends Model
     {
         return $this->belongsTo(TodoList::class, 'todo_list_id');
     }
+
+    public function image()
+    {
+        return $this->hasOne(TodoImage::class, 'todo_id');
+    }
 }
