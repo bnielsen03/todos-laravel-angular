@@ -39,18 +39,22 @@ class TodoController
 
     public function store(Request $request, $todoListID)
     {
-        dd(base64_encode($request->file('image')->getContent()));
-        $path = Storage::disk('s3')->putFile('/test/image', $request->file('image'));
+        if($file = $request->file('image')) {
+            $path = Storage::disk('s3')->putFile('/test/image', $file);
+        }
 
         $todo = Todo::create([
             'title' => $request->input('title'),
             'todo_list_id' => $todoListID
         ]);
 
-        TodoImage::create([
-            'todo_id' => $todo->getKey(),
-            'path' => $path
-        ]);
+
+        if($file) {
+            TodoImage::create([
+                'todo_id' => $todo->getKey(),
+                'path' => $path
+            ]);
+        }
 
         return redirect("/todo-lists/$todoListID");
     }
