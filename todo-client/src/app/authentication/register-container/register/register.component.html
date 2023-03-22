@@ -1,0 +1,39 @@
+<div class="flex flex-wrap justify-center align-middle h-full w-full items-center">
+  <div class="h-auto">
+    <mat-card>
+      <mat-card-header class="text-white mb-4">Register</mat-card-header>
+      <mat-card-content>
+        <div class="tg-my-4">
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" [(ngModel)]="email">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" [(ngModel)]="password">
+          </mat-form-field>
+        </div>
+
+        <div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Retype Password</mat-label>
+            <input matInput placeholder="Password" [(ngModel)]="password2">
+          </mat-form-field>
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="w-full">
+          <span><a class="text-white underline" href="/">Login</a></span>
+
+          <button mat-raised-button color="accent" class="float-right" (click)="registerClicked()">Register</button>
+        </div>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+

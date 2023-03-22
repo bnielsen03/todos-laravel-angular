@@ -14,3 +14,16 @@
 11. Host project in AWS with an EC2 instance and Route53
 12. Refactor front end to Angular
 13. Host angular in S3 with the CDN
+
+
+# Moving from Blade to Angular
+1. Create Angular Project
+2. Update Apache Conf to route to angular and API
+3. Install Material Angular
+4. Install Tailwind
+5. Install NGRX
+6. Authentication
+7. TODO List show them
+8. TODO List add one
+9. TODO Item List
+10. TODO Item Add One
