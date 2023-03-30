@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import {Store} from "@ngrx/store";
+import * as fromRoot from '../../store';
+import * as AuthActions from '../../store/authentication/auth.actions';
+import {skipWhile} from "rxjs";
+import {take} from "rxjs/operators";
 
 @Component({
   selector: 'app-register-container',
@@ -7,13 +12,23 @@ import { Component } from '@angular/core';
 })
 export class RegisterContainerComponent {
 
+  constructor(private store: Store<fromRoot.State>) {
+  }
+
   register(event: any) {
     if(event.password !== event.password2) {
       // do some error message
     }
     else {
       // register the user
+      this.store.dispatch(AuthActions.registerAction({username: event.email, password: event.password}));
+      this.subscribeToRegister();
     }
-    console.log(event)
+  }
+
+  subscribeToRegister() {
+    this.store.select(fromRoot.getUser).pipe(skipWhile(user => !user), take(1)).subscribe((user) => {
+      console.log(user);
+    })
   }
 }

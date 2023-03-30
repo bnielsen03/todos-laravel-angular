@@ -2,17 +2,11 @@
   ServerName api.todo.test
   ServerAdmin webmaster@localhost
 
+
   DocumentRoot "/var/www/todo-api/public"
   <Directory "/var/www/todo-api" >
     AllowOverride All
-   Order allow,deny
-   Allow from all
-   Require all granted
   </Directory>
-
- RewriteEngine On
-   RewriteCond %{HTTP:Authorization} .
-   RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
   ErrorLog ${APACHE_LOG_DIR}/error.log
   CustomLog ${APACHE_LOG_DIR}/access.log combined
@@ -20,16 +14,7 @@
 
 <VirtualHost *:80>
    ServerName todo.test
-   ServerAlias www.todo.test
    DocumentRoot /var/www/todo-client/dist/todo-client
-
-<Directory "/var/www/todo-client" >
-    AllowOverride All
-   Order allow,deny
-   Allow from all
-   Require all granted
-  </Directory>
-
 
    RewriteEngine On
    LogLevel alert rewrite:trace3

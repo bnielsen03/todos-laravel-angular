@@ -51,6 +51,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapTodoRoutes();
 
+        $this->mapAuthRoutes();
+
         //
     }
 
@@ -93,5 +95,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware(['web', 'auth'])
             ->group(base_path('app/Todos/Http/routes.php'));
+    }
+
+    protected function mapAuthRoutes()
+    {
+        Route::prefix('api/v1')
+            ->group(base_path('app/Auth/Http/routes.php'));
     }
 }
