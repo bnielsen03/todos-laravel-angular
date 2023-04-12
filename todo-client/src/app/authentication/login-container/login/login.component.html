@@ -6,14 +6,14 @@
         <div class="tg-my-4">
           <mat-form-field class="example-full-width">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" value="">
+            <input matInput placeholder="Email" [(ngModel)]="email">
           </mat-form-field>
         </div>
 
         <div>
           <mat-form-field class="example-full-width">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Password" value="">
+            <input matInput placeholder="Password" [(ngModel)]="password">
           </mat-form-field>
         </div>
 
@@ -22,7 +22,7 @@
         <div class="w-full">
           <span><a class="text-white underline" href="/register">Register</a></span>
 
-          <button mat-raised-button color="accent" class="float-right">Login</button>
+          <button mat-raised-button color="accent" class="float-right" (click)="loginClicked()">Login</button>
         </div>
 
       </mat-card-actions>

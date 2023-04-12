@@ -4,6 +4,7 @@ import * as fromRoot from '../../store';
 import * as AuthActions from '../../store/authentication/auth.actions';
 import {skipWhile} from "rxjs";
 import {take} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-container',
@@ -12,7 +13,7 @@ import {take} from "rxjs/operators";
 })
 export class RegisterContainerComponent {
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<fromRoot.State>, private router: Router) {
   }
 
   register(event: any) {
@@ -28,7 +29,7 @@ export class RegisterContainerComponent {
 
   subscribeToRegister() {
     this.store.select(fromRoot.getUser).pipe(skipWhile(user => !user), take(1)).subscribe((user) => {
-      console.log(user);
+      this.router.navigate(['/todos/todo-list'])
     })
   }
 }

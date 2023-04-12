@@ -16,6 +16,13 @@ export class AuthEffects {
     catchError((error: string) => of(AuthActions.registerFailedAction({error: error})))
   ));
 
+  login$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthActions.loginAction.type),
+    switchMap((action: any) => this.authService.login(action.username, action.password)),
+    map((response: any) => AuthActions.loginSuccessfulAction({user: response})),
+    catchError((error: string) => of(AuthActions.loginFailedAction({error: error})))
+  ));
+
   constructor(
     private actions$: Actions,
     private authService: AuthenticationService

@@ -10,6 +10,10 @@ export interface State {
   registerLoading: boolean;
   registerSuccessful: boolean|null;
   registerError: string|null;
+
+  loginLoading: boolean;
+  loginSuccessful: boolean|null;
+  loginError: string|null;
 }
 
 export const initialState: State = {
@@ -18,6 +22,10 @@ export const initialState: State = {
   registerLoading: false,
   registerSuccessful: null,
   registerError: null,
+
+  loginLoading: false,
+  loginSuccessful: null,
+  loginError: null,
 }
 
 const authReducer = createReducer(
@@ -40,6 +48,25 @@ const authReducer = createReducer(
     registerLoading: false,
     registerSuccessful: false,
     registerError: action.error
+  })),
+
+  on(AuthActions.loginAction, (state: any) => ({
+    ...state,
+    loginLoading: true
+  })),
+
+  on(AuthActions.loginSuccessfulAction, (state: any, action:any) => ({
+    ...state,
+    loginLoading: false,
+    loginSuccessful: true,
+    user: action.user
+  })),
+
+  on(AuthActions.loginFailedAction, (state: any, action: any) => ({
+    ...state,
+    loginLoading: false,
+    loginSuccessful: false,
+    loginError: action.error
   })),
 );
 
